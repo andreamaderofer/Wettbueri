@@ -16,7 +16,11 @@ public class WettManager {
 		
 	}
 
-	public void wettObjektSetzen (Wettobjekt wettobjekt) {
+	public void ZahlenWettSetzen (ZahlenWettObjekt wettobjekt) {
 		return;
 	}
+	public void LottoWettObjekttSetzen (LottoWettObjekt wettobjekt) {
+		return;
+	}
+	
 }
