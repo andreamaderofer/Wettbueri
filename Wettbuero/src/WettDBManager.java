@@ -37,10 +37,14 @@ class WettDBManager {
 		
 	}
 
-	public void setWettobjekte (WettObjekt wo) {
+	public void setZahlWettobjekte (ZahlenWettObjekt wo) {
 		
 	}
-
+	
+	public void setLottoWettobjekte (LottoWettObjekt wo) {
+		
+	}
+	
 	public void close () {
 		
 	}
