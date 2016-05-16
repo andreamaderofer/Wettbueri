@@ -1,3 +1,4 @@
+package Control;
 
 class Wette {
 	protected Account account;

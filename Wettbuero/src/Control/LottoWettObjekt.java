@@ -1,3 +1,4 @@
+package Control;
 
 public class LottoWettObjekt {
 	protected int[] zahl;

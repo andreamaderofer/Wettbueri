@@ -1,3 +1,4 @@
+package GUI;
 class GUI implements Observer {
 
 	public GUI () {

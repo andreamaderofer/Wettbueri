@@ -1,5 +1,8 @@
+package Control;
 import java.util.ArrayList;
 import java.util.Date;
+
+import GUI.Observer;
 
 class WettobjektObserveable extends TimerTask {
 	protected int id;

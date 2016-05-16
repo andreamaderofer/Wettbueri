@@ -1,3 +1,4 @@
+package Control;
 class LottoWette extends Wette {
 	protected int[] wette;
 
