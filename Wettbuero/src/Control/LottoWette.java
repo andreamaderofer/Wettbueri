@@ -6,11 +6,11 @@ class LottoWette extends Wette {
 		
 	}
 
-	public void LottoWette (String pars) {
+	public LottoWette (String pars) {
 		
 	}
 
-	public void LottoWette (int[] wette) {
+	public LottoWette (int[] wette) {
 		
 	}
 

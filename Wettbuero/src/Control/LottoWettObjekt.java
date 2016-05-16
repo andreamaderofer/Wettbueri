@@ -7,11 +7,11 @@ public class LottoWettObjekt {
 		
 	}
 
-	public void LottoWettObjekt (String pars) {
+	public LottoWettObjekt (String pars) {
 		
 	}
 
-	public void LottoWettObjekt (int[] zahlen) {
+	public LottoWettObjekt (int[] zahlen) {
 		
 	}
 

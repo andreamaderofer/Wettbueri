@@ -10,7 +10,10 @@ public class Account {
 	public Account() {
 		
 	}
-
+	public Account (int kontobetrag, int kontonummer) {
+		
+	}
+	
 	public void einzahlung (int betrag) {
 		
 	}
@@ -19,7 +22,5 @@ public class Account {
 		
 	}
 
-	public void Account (int kontobetrag, int kontonummer) {
-		
-	}
+
 }

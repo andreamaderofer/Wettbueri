@@ -3,7 +3,8 @@ package Control;
 class ZahlenWettObjekt extends WettobjektObserveable
 {
 	protected int zahl;
-
+	protected String pars;
+	
 	public ZahlenWettObjekt() 
 	{
 		
@@ -11,7 +12,7 @@ class ZahlenWettObjekt extends WettobjektObserveable
 
 	public ZahlenWettObjekt (String pars) 
 	{
-		
+		this.pars=pars;
 	}
 
 	public ZahlenWettObjekt (int zahl) 
