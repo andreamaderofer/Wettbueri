@@ -1,6 +1,7 @@
 package Control;
 
-class ZahlenWette extends Wette {
+class ZahlenWette extends Wette 
+{
 	protected int wette;
 	protected String pars;
 	public ZahlenWette() 

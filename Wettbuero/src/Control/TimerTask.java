@@ -1,10 +1,12 @@
 package Control;
-abstract class TimerTask {
-
-	public TimerTask() {
+public class TimerTask 
+{
+	public TimerTask()
+	{
 		
 	}
-
-	public abstract void run ();
-
+	public void run ()
+	{
+		
+	}
 }

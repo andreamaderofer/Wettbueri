@@ -1,6 +1,8 @@
 package Control;
 
-class ZahlenWettObjekt extends WettobjektObserveable
+import java.util.Observable;
+
+public class ZahlenWettObjekt extends WettobjektObserveable
 {
 	protected int zahl;
 	protected String pars;
@@ -17,17 +19,20 @@ class ZahlenWettObjekt extends WettobjektObserveable
 
 	public ZahlenWettObjekt (int zahl) 
 	{
+		this.zahl=zahl;
+	}
+
+	protected void start () 
+	{		
 		
 	}
 
-	private void start () 
+	protected void end () 
+	{		
+	}
+
+	public void update(Observable o, Object arg) 
 	{
 		
 	}
-
-	private void end () 
-	{
-		
-	}
-
 }

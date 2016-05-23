@@ -1,17 +1,21 @@
 package Control;
-class LottoWette extends Wette {
+class LottoWette extends Wette
+{
 	protected int[] wette;
 
-	public LottoWette() {
+	public LottoWette()
+	{
 		
 	}
 
-	public LottoWette (String pars) {
+	public LottoWette (String pars) 
+	{
 		
 	}
 
-	public LottoWette (int[] wette) {
+	public LottoWette (int[] wette) 
+	{
+		this.wette=wette;
 		
 	}
-
 }

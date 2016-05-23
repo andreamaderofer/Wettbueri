@@ -1,40 +1,55 @@
 package Control;
+import GUI.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Observer;
 
-import GUI.Observer;
-
-class WettobjektObserveable extends TimerTask {
+abstract class WettobjektObserveable extends TimerTask implements Observer
+{
 	protected int id;
 	protected Date start;
 	protected Date end;
-	protected ArrayList<Wette> wetten;
-	public ArrayList<Observer> observer;
-
-	public WettobjektObserveable() {
+	protected ArrayList<Wette> wetten=new ArrayList<Wette>();
+	protected long zeit;
+	protected ArrayList<Observer> observer=new ArrayList<Observer>();
+	
+	
+	public WettobjektObserveable() 
+	{
 		
 	}
 
-	public void wetten (Wette wette) {
-		
+	public void wetten (Wette wette)
+	{
+		if(wette instanceof ZahlenWette)
+		{
+			ZahlenWette zahlw=new ZahlenWette();
+		}
+		else
+		{
+			if(wette instanceof LottoWette)
+			{
+				LottoWette lottoWe=new LottoWette();
+			}
+		}
 	}
 
-	public void run () {
-		
+	public void run ()
+	{
+		TimerTask timeTask=new TimerTask();
+		timeTask.run();
 	}
 
-	private void start () {
+	protected abstract void start () ;
+	protected abstract void end () ;
+
+	public void alsObserveableMarkieren (Observer observer)
+	{
+		this.observer.add(observer);
 	}
 
-	private void end () {
-	}
+	public void alleObserverUpdateSenden () 
+	{
 
-	public void alsObserveableMarkieren (Observer observer) {
-		
 	}
-
-	public void alleObserverUpdateSenden () {
-		
-	}
-
 }
