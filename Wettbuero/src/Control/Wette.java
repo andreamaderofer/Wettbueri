@@ -1,5 +1,11 @@
 package Control;
 
+/**
+ * 
+ * @author Tobias
+ * @version 1.0
+ */
+
 class Wette 
 {
 	protected Account account;
