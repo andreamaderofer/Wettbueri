@@ -1,21 +1,30 @@
 package Control;
-class LottoWette extends Wette
-{
-	protected int[] wette;
+/**
+ * 
+ * @author Tobias
+ * @version 1.0
+ */
 
-	public LottoWette()
-	{
-		
-	}
+class LottoWette extends Wette 
+{
+/**
+ * @author Tobias
+ * @version 1.0	
+ */
+	
+	protected int[] wette;
+	int zaehler = 0;
 
 	public LottoWette (String pars) 
 	{
-		
+		super();
+		wette[zaehler] = Integer.parseInt(pars);
+		zaehler++;
 	}
 
-	public LottoWette (int[] wette) 
+	public LottoWette (int[] w) 
 	{
-		this.wette=wette;
-		
+		wette = w;
 	}
+
 }
