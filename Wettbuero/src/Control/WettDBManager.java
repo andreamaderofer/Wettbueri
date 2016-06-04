@@ -63,12 +63,8 @@ class WettDBManager {
 		stmt.close();
 	}
 
-	public void setZahlWettobjekte(ZahlenWettObjekt wo) {
-
-	}
-
-	public void setLottoWettobjekte(LottoWettObjekt wo) {
-
+	public void setWettobjektObserveable(WettobjektObserveable wettObjekt){
+		
 	}
 
 	public void close() throws SQLException {
