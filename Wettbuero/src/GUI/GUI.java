@@ -1,5 +1,8 @@
 package GUI;
-
+/**
+ * @author Andrea
+ *  @version 1.0
+ */
 import Control.*;
 import javax.swing.JFrame;
 

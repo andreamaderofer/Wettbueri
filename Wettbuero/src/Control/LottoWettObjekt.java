@@ -1,5 +1,9 @@
 package Control;
-
+/**
+ * 
+ * @author Andrea
+ * @version 1.0
+ */
 public class LottoWettObjekt {
 	protected int[] zahlen = new int[500];
 	

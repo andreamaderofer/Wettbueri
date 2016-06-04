@@ -1,4 +1,8 @@
 package Control;
+/**
+ * @author Kurt
+ *  @version 1.0
+ */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -48,7 +52,7 @@ class WettDBManager {
 	public void setWette (Wette wette) throws SQLException{
 		String sql = "insert into account values(?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, wette.id);
+		stmt.setInt(1, wette.ID);
 		stmt.setInt(2, wette.account.kontonummer);
 		stmt.setObject(3,wette.einsatz);
 		stmt.setInt(4,wette.tipp);

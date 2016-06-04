@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class Account 
 {
-	protected int kontobetrag;
+	protected double kontobetrag;
 	protected int kontonummer;
 	protected String benutzername;
 	protected String vorname;
@@ -50,7 +50,7 @@ public class Account
 		this.passwort = passwort;
 	}
 
-	public int getKontobetrag() {
+	public double getKontobetrag() {
 		return kontobetrag;
 	}
 
@@ -74,9 +74,9 @@ public class Account
 		return benutzerSeit;
 	}
 
-	public void einzahlung (int betrag) 
+	public void einzahlung (double d) 
 	{
-		kontobetrag = kontobetrag + betrag;
+		kontobetrag = kontobetrag + d;
 	}
 
 	public void auszahlung (int betrag) 

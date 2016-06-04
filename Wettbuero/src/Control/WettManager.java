@@ -1,6 +1,13 @@
 package Control;
+
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Kurt
+ * @version 1.0
+ *
+ */
 public class WettManager {
 	protected WettDBManager wettDBManager;
 	public ArrayList<Account> accountListe;
