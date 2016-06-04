@@ -1,4 +1,5 @@
 package Control;
+
 /**
  * @author andrea
  * @version 1.0
@@ -24,10 +25,10 @@ abstract class WettobjektObserveable extends Observable {
 	public ArrayList<Observer> observer;
 
 	public WettobjektObserveable(Date start, Date end, String beschreibung, String pars) {
-		this.start=start;
-		this.end=end;
-		this.beschreibung=beschreibung;
-		
+		this.start = start;
+		this.end = end;
+		this.beschreibung = beschreibung;
+
 		Timer t = WettTimerSingleton.getInstance();
 		TimerTask timer = null;
 		t.schedule(timer, end);
@@ -35,10 +36,10 @@ abstract class WettobjektObserveable extends Observable {
 	}
 
 	public WettobjektObserveable(Date start, Date end, String beschreibung, int zahl) {
-		this.start=start;
-		this.end=end;
-		this.beschreibung=beschreibung;
-		
+		this.start = start;
+		this.end = end;
+		this.beschreibung = beschreibung;
+
 		Timer t = WettTimerSingleton.getInstance();
 		TimerTask timer = null;
 		t.schedule(timer, end);
@@ -71,12 +72,12 @@ abstract class WettobjektObserveable extends Observable {
 			this.clearChanged();
 		}
 	}
-	
-	public Date getEndDate(){
+
+	public Date getEndDate() {
 		return end;
 	}
-	
-	public Date getStartDate(){
+
+	public Date getStartDate() {
 		return start;
 	}
 }

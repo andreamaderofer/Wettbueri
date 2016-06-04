@@ -13,22 +13,23 @@ public class WettManager {
 	public ArrayList<Account> accountListe;
 
 	public WettManager() {
-		
+
 	}
 
-	public void wetteSetzen (Wette wette) {
-		
+	public void wetteSetzen(Wette wette) {
+
 	}
 
-	public void accountsErstellen (Account account) {
-		
+	public void accountsErstellen(Account account) {
+
 	}
 
-	public void ZahlenWettSetzen (ZahlenWettObjekt wettobjekt) {
+	public void ZahlenWettSetzen(ZahlenWettObjekt wettobjekt) {
 		return;
 	}
-	public void LottoWettObjekttSetzen (LottoWettObjekt wettobjekt) {
+
+	public void LottoWettObjekttSetzen(LottoWettObjekt wettobjekt) {
 		return;
 	}
-	
+
 }

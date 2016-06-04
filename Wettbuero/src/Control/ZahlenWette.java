@@ -9,19 +9,16 @@ package Control;
 class ZahlenWette extends Wette {
 	protected int wette;
 	protected String pars;
-	
-	public ZahlenWette() 
-	{
-		
+
+	public ZahlenWette() {
+
 	}
 
-	public ZahlenWette (String parsi)
-	{
+	public ZahlenWette(String parsi) {
 		pars = parsi;
 	}
 
-	public ZahlenWette (int wetti) 
-	{
+	public ZahlenWette(int wetti) {
 		wette = wetti;
 	}
 }
