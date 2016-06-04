@@ -1,21 +1,24 @@
 package Control;
 
-class ZahlenWette extends Wette 
-{
+/**
+ * 
+ * @author Tobias
+ * @version 1.0
+ */
+
+class ZahlenWette extends Wette {
 	protected int wette;
 	protected String pars;
-	public ZahlenWette() 
-	{
-		
+
+	public ZahlenWette() {
+
 	}
 
-	public ZahlenWette (String pars)
-	{
-		this.pars=pars;
+	public ZahlenWette(String parsi) {
+		pars = parsi;
 	}
 
-	public ZahlenWette (int wette) 
-	{
-		
+	public ZahlenWette(int wetti) {
+		wette = wetti;
 	}
 }

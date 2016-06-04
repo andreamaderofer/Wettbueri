@@ -1,5 +1,9 @@
 package Control;
 
+/**
+ *@author Andrea
+ * @version 1.0
+ */
 import java.util.Timer;
 import java.util.TimerTask;
 
