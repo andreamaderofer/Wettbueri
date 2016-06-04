@@ -5,10 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-class WettDBManager {
+/**
+ * 
+ * @author Kurt Brennecke
+ * @version 1.0
+ *
+ */
+class WettDBManager 
+{
 	protected Connection conn;
 
-	public WettDBManager() throws SQLException, ClassNotFoundException {
+	public WettDBManager() throws SQLException, ClassNotFoundException 
+	{
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection("");
 	}
@@ -29,7 +37,8 @@ class WettDBManager {
 		return null;
 	}
 	
-	public void setAccount (Account account) throws SQLException{
+	public void setAccount (Account account) throws SQLException
+	{
 		String sql = "insert into account values(?,?,?,?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, account.kontonummer);
@@ -45,24 +54,21 @@ class WettDBManager {
 		stmt.close();
 	}
 
-	public void setWette (Wette wette) throws SQLException{
+	public void setWette (Wette wette) throws SQLException
+	{
 		String sql = "insert into account values(?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, wette.id);
+		stmt.setInt(1, wette.getID());
 		stmt.setInt(2, wette.account.kontonummer);
 		stmt.setObject(3,wette.einsatz);
-		stmt.setInt(4,wette.tipp);
+		stmt.setString(4,wette.tipp);
 		stmt.setInt(5,wette.erloes);
 		
 		stmt.executeUpdate(sql);
 		stmt.close();
 	}
 
-	public void setZahlWettobjekte (ZahlenWettObjekt wo) {
-		
-	}
-	
-	public void setLottoWettobjekte (LottoWettObjekt wo) {
+	public void setWettobjektObserveable(WettobjektObserveable wettObjekt){
 		
 	}
 	
