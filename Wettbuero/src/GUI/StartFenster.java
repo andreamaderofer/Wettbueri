@@ -6,6 +6,8 @@ import javax.swing.JTextField;
 import javax.swing.JWindow;
 
 import java.awt.BorderLayout;
+import java.awt.Event;
+
 import javax.swing.SwingConstants;
 
 import Control.*;
@@ -13,6 +15,8 @@ import Control.*;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
@@ -20,7 +24,9 @@ import java.awt.event.ActionEvent;
  * @author Andrea
  * @version 1.0
  */
-public class StartFenster extends JFrame {
+public class StartFenster extends JFrame implements KeyListener{
+	private JTextField benutzer ;
+	private JTextField passwort1 ;
 	public StartFenster() {
 		getContentPane().setLayout(null);
 		setBounds(200, 200, 400, 300);
@@ -44,29 +50,12 @@ public class StartFenster extends JFrame {
 				JLabel passwort = new JLabel("Bitte geben Sie Ihr Passwort und Ihren Benutzernamen ein!");
 				passwort.setBounds(80, 0, 350, 20);
 				wind.getContentPane().add(passwort);
-				JTextField benutzer = new JTextField("Benutzer");
-				JTextField passwort1 = new JTextField("Passwort");
+				benutzer = new JTextField("Benutzer");
+				passwort1 = new JTextField("Passwort");
 				benutzer.setBounds(80, 30, 200, 20);
 				passwort1.setBounds(80, 60, 200, 20);
 				wind.getContentPane().add(benutzer);
 				wind.getContentPane().add(passwort1);
-				int benutzerID = 0;
-				Account acc=new Account();
-				WettDBManager wett = null;
-				try {
-					wett = new WettDBManager();
-				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				for(int i=0;i<wett.getAccounts().size();i++){
-					if(wett.getAccounts().get(i).getBenutzername().equals(benutzer)&&
-							wett.getAccounts().get(i).getPasswort().equals(passwort1)){
-						GUI gu=new GUI(benutzerID=i);
-					}
-				}
-				//GUI g = new GUI(benutzerID);
 			}
 		});
 		btnLogin.setBounds(83, 73, 89, 23);
@@ -117,5 +106,33 @@ public class StartFenster extends JFrame {
 		btnBeenden.setBounds(158, 161, 89, 23);
 		getContentPane().add(btnBeenden);
 		setVisible(true);
+	}
+
+	public void keyPressed(KeyEvent event) {
+		if((event.getKeyCode()==KeyEvent.VK_ENTER)&&(!benutzer.getText().equals(null)||!passwort1.getText().equals(null))){
+			int benutzerID = 0;
+			Account acc=new Account();
+			WettDBManager wett = null;
+			try {
+				wett = new WettDBManager();
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+			
+			for(int i=0;i<wett.getAccounts().size();i++){
+				if(wett.getAccounts().get(i).getBenutzername().equals(benutzer)&&
+						wett.getAccounts().get(i).getPasswort().equals(passwort1)){
+					GUI gu=new GUI(benutzerID=i);
+				}
+			}
+		}
+	}
+
+	public void keyReleased(KeyEvent event) {
+		
+	}
+
+	public void keyTyped(KeyEvent event) {
+		
 	}
 }
