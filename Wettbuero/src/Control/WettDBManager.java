@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author Kurt Brennecke
+ * @author Kurt 
  * @version 1.0
  *
  */
