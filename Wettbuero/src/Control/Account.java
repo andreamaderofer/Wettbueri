@@ -9,8 +9,7 @@ import java.util.Date;
  * @author Tobias
  * @version 1.0
  */
-public class Account 
-{
+public class Account {
 	protected double kontobetrag;
 	protected int kontonummer;
 	protected String benutzername;
@@ -20,20 +19,21 @@ public class Account
 	protected String passwort;
 	protected String benutzerSeit;
 
-	public Account(int kontobet, String vorn, String nachn, int kontonum, String pw) 
-	{
+	public Account(int kontobet, String vorn, String nachn, int kontonum, String pw) {
 		kontobetrag = kontobet;
 		vorname = vorn;
 		nachname = nachn;
 		kontonummer = kontonum;
 		passwort = pw;
 		benutzername = vorname + nachname;
-		
+
 		Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		benutzerSeit = formatter.format(date);
 	}
 
+	public Account() {
+	}
 	public String getVorname() {
 		return vorname;
 	}
@@ -74,13 +74,11 @@ public class Account
 		return benutzerSeit;
 	}
 
-	public void einzahlung (double d) 
-	{
+	public void einzahlung(double d) {
 		kontobetrag = kontobetrag + d;
 	}
 
-	public void auszahlung (int betrag) 
-	{
+	public void auszahlung(int betrag) {
 		kontobetrag = kontobetrag - betrag;
 	}
 }

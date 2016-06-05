@@ -9,7 +9,8 @@ class Wette {
 	protected Account account;
 	protected Wette einsatz;
 	protected int id = -1;
-	private int tipp;
+	protected int tipp;
+	private int erloese;
 
 	public Wette(Account acc, Wette eins) {
 		id++;
@@ -31,5 +32,13 @@ class Wette {
 
 	public Account getAccount() {
 		return null;
+	}
+
+	public int getErloese() {
+		return erloese;
+	}
+
+	public void setErloese(int erloese) {
+		this.erloese = erloese;
 	}
 }

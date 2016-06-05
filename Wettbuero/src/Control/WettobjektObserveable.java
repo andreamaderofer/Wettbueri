@@ -17,10 +17,63 @@ import java.util.TimerTask;
 import javax.print.attribute.DateTimeSyntax;
 
 abstract class WettobjektObserveable extends Observable {
+	public static final String wette = null;
 	protected int id;
 	protected Date start;
 	protected Date end;
 	protected String beschreibung;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Date getStart() {
+		return start;
+	}
+
+	public void setStart(Date start) {
+		this.start = start;
+	}
+
+	public Date getEnd() {
+		return end;
+	}
+
+	public void setEnd(Date end) {
+		this.end = end;
+	}
+
+	public String getBeschreibung() {
+		return beschreibung;
+	}
+
+	public void setBeschreibung(String beschreibung) {
+		this.beschreibung = beschreibung;
+	}
+
+	public ArrayList<Wette> getWetten() {
+		return wetten;
+	}
+
+	public void setWetten(ArrayList<Wette> wetten) {
+		this.wetten = wetten;
+	}
+
+	public ArrayList<Observer> getObserver() {
+		return observer;
+	}
+
+	public void setObserver(ArrayList<Observer> observer) {
+		this.observer = observer;
+	}
+
+	public static String getWette() {
+		return wette;
+	}
+
 	protected ArrayList<Wette> wetten;
 	public ArrayList<Observer> observer;
 
@@ -73,11 +126,12 @@ abstract class WettobjektObserveable extends Observable {
 		}
 	}
 
-	public Date getEndDate() {
-		return end;
+	public java.sql.Date getEndDate() {
+		return (java.sql.Date) end;
 	}
 
-	public Date getStartDate() {
-		return start;
+	public java.sql.Date getStartDate() {
+		return (java.sql.Date) start;
 	}
+
 }
