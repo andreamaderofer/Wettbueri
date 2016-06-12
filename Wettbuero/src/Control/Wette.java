@@ -7,15 +7,15 @@ package Control;
  */
 class Wette {
 	protected Account account;
-	protected Wette einsatz;
+	protected double einsatz;
 	protected int id = -1;
 	protected int tipp;
 	private int erloese;
 
-	public Wette(Account acc, Wette eins) {
+	public Wette(Account acc, double einsatz) {
 		id++;
 		account = acc;
-		einsatz = eins;
+		this.einsatz = einsatz;
 	}
 
 	public Wette() {

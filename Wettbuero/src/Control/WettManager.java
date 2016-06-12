@@ -21,11 +21,11 @@ public class WettManager {
 		wettDBManager.setWette(wette);
 	}
 
-	public void accountsErstellen(Account account) throws SQLException {
+	public void accountsErstellen(Account account) throws Exception {
 		wettDBManager.setAccount(account);
 	}
 
-	public void wetteSetzen(WettobjektObserveable wettobjekt){
+	public void wetteSetzen(WettobjektObserveable wettobjekt) throws SQLException{
 		wettDBManager.setWettobjektObserveable(wettobjekt);
 	}
 	

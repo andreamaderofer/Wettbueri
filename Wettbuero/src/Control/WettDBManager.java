@@ -10,10 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * 
  * @author Kurt
  * @version 1.0
- *
  */
 
 public class WettDBManager {
@@ -21,54 +19,75 @@ public class WettDBManager {
 
 	public WettDBManager() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.jdbc.Driver");
-		conn = DriverManager.getConnection("");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost/wettbuero", "root", "");
+	}
+	public ArrayList<Account> getAccounts() throws Exception {
+		int accZahl=0;
+		Account account = null;
+		ArrayList<Account> accounts = new ArrayList<Account>();
+		String sql = "SELECT * FROM account";
+		java.sql.Statement stmt = conn.createStatement();
+		ResultSet rs = ((java.sql.Statement) stmt).executeQuery(sql);
+		while (rs.next()) {
+			int kontostand = rs.getInt("kontostand");
+			int accountID = rs.getInt("accountID");
+			String vorname = rs.getString("vorname");
+			String nachname = rs.getString("nachname");
+			String benutzer=rs.getString("benutzername");
+			String passwort = rs.getString("passwort");
+			account = new Account(accZahl,kontostand, benutzer,nachname, vorname, accountID, passwort);
+			accounts.add(account);
+			accZahl++;
+		}
+		rs.close();
+		stmt.execute(sql);
+		return accounts;
 	}
 
-	public ArrayList<Account> getAccounts() {
-		Account account = null; 
-		ArrayList<Account> accounts = new ArrayList<Account>(); 
-		String sql = "SELECT * FROM account"; 
-		Statement stmt = (Statement) conn.createStatement(); 
-		ResultSet rs = ((java.sql.Statement) stmt).executeQuery(sql); 
-		while(rs.next()) 
-		{ 
-			int kontostand = rs.getInt("kontostand"); 
-			int accountID = rs.getInt("accountID"); 
-			String vorname = rs.getString("vorname"); 
-			String nachname = rs.getString("nachname"); 
-			String passwort = rs.getString("passwort"); 
-			account = new Account(kontostand, nachname, vorname, accountID, passwort); 
-			accounts.add(account); 
-		} 
-		rs.close(); 
-		stmt.close(); 
-		 		 
-		return accounts; 
-
+	public Wette getWette(Wette wette) throws Exception {
+		String sql = "SELECT * FROM wette";
+		Account acc;
+		Statement stmt = (Statement) conn.createStatement();
+		ResultSet rs = ((java.sql.Statement) stmt).executeQuery(sql);
+		while (rs.next()) {
+			int kontostand = rs.getInt("kontostand");
+			int wettID = rs.getInt("WettID");
+			int accountID = rs.getInt("accountID");
+			String vorname = rs.getString("vorname");
+			String nachname = rs.getString("nachname");
+			String passwort = rs.getString("passwort");
+			for(int i=0;i<=getAccounts().size()-1;i++){
+				if(accountID==getAccounts().get(i).getBenutzerID()){
+					return new Wette(getAccounts().get(i),wette.einsatz);
+				}
+			}
+			//(int benutzerID,double kontobet, String benutzernamen,String vorn, String nachn, int kontonum, String pw)
+		}
+		rs.close();
+		stmt.execute();
+		return wette;
 	}
 
-	public Wette getWette(Wette wette) {
-		return null;
-	}
-
-	public void setAccount(Account account) throws SQLException {
-		String sql = "insert into account values(?,?,?,?,?,?,?,?)";
+	public void setAccount(Account account) throws Exception {
+		
+		String sql = "insert into Account value(?,?, ?, ?, ?, ?, ?, ?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, account.kontonummer);
-		stmt.setString(2, account.email);
-		stmt.setString(3, account.passwort);
-		stmt.setString(4, account.nachname);
-		stmt.setString(5, account.vorname);
-		stmt.setString(6, account.benutzername);
-		stmt.setDouble(7, account.kontobetrag);
-		stmt.setString(8, account.benutzerSeit);
 
+		stmt.setInt(1,account.benutzerID);
+		stmt.setInt(2, account.kontonummer);
+		stmt.setString(3, account.email);
+		stmt.setString(4, account.passwort);
+		stmt.setString(5, account.nachname);
+		stmt.setString(6, account.vorname);
+		stmt.setString(7, account.benutzername);
+		stmt.setDouble(8, account.kontobetrag);
+		stmt.setString(9, account.benutzerSeit);
 		stmt.executeUpdate(sql);
 		stmt.close();
 	}
 
 	public void setWette(Wette wette) throws SQLException {
-		String sql = "insert into wette values(?,?,?,?,?)";
+		String sql = "insert into wette value(?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 
 		stmt.setInt(1, wette.getID());
@@ -81,73 +100,33 @@ public class WettDBManager {
 		stmt.close();
 	}
 
-	public void setWettobjektObserveable(WettobjektObserveable wettObjekt) {
-		
-		String sql = "INSERT INTO wettobjekt VALUES(?, ?, ?, ?, ?, ?)"; 
-		PreparedStatement stmt = conn.prepareStatement(sql); 
-		// stmt.setInt(1, wettobjekt.getWettobjektID()); 
-		stmt.setString(2, wettObjekt).getBeschreibung()); 
-		stmt.setDate(3, wettObjekt.getStartDate()); 
-		stmt.setDate(4, wettObjekt.getEndDate()); 
-		 
-		stmt.setString(6, wettObjekt.getErgebnis()); 
-		stmt.executeUpdate(); 
-		stmt.close(); 
+	public void setWettobjektObserveable(WettobjektObserveable wettObjekt) throws SQLException {
 
-		stmt.setInt(1, wettObjekt.id);
-		stmt.setInt(2, wettObjekt.wette.id);
-		stmt.setString(3, wettObjekt.beschreibung);
-		stmt.setDate(4, (Date) wettObjekt.start);
-		stmt.setDate(5, (Date) wettObjekt.end);
-		stmt.setString(6, wettObjekt.beschreibung);
-
-		stmt.executeUpdate(sql);
+		String sql = "insert into wettobjekt value(?, ?, ?, ?, ?, ?)";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		if (wettObjekt instanceof LottoWettObjekt) {
+			LottoWettObjekt lotto = (LottoWettObjekt) wettObjekt;
+			stmt.setInt(1, lotto.getId());
+			stmt.setString(2, lotto.getBeschreibung());
+			stmt.setDate(3, lotto.getStartDate());
+			stmt.setDate(4, lotto.getEndDate());
+			stmt.setString(6, "" + lotto.ergebnis());
+		} else {
+			if (wettObjekt instanceof ZahlenWettObjekt) {
+				ZahlenWettObjekt zahl = (ZahlenWettObjekt) wettObjekt;
+				stmt.setInt(1, zahl.getId());
+				stmt.setString(2, zahl.getBeschreibung());
+				stmt.setDate(3, zahl.getStartDate());
+				stmt.setDate(4, zahl.getEndDate());
+				stmt.setString(6, "" + zahl.ergebnis());
+			}
+		}
+		stmt.executeUpdate();
 		stmt.close();
+
 	}
 
 	public void close() throws SQLException {
 		conn.close();
 	}
-	
-	/*
-	 * public Wettobjekt_Observeable getWettobjekt(Wettobjekt_Observeable wettobjekt) throws SQLException 
-71 	{ 
-72 		Wettobjekt_Observeable wettobjekt1 = null; 
-73 		String sql = "SELECT * FROM wettobjekt WHERE wettobjektID = " + wettobjekt.getID(); 
-74 		Statement stmt = conn.createStatement(); 
-75 		ResultSet rs = stmt.executeQuery(sql); 
-76 		if(wettobjekt instanceof LottoWettObjekt) 
-77 		{ 
-78 			while(rs.next()) 
-79 			{ 
-80 				Date wettstart = rs.getDate("wettstart"); 
-81 				Date wettende = rs.getDate("wettende"); 
-82 				String beschreibung = rs.getString("beschreibung"); 
-83 				String zahlen = rs.getString("ergebnis"); 
-84 				wettobjekt1 = new LottoWettObjekt(wettstart, wettende, beschreibung, zahlen); 
-85 				wettobjekt1 = (Wettobjekt_Observeable) wettobjekt1; 
-86 			} 
-87 			rs.close(); 
-88 			stmt.close(); 
-89 		} 
-90 		if(wettobjekt instanceof ZahlenWettObjekt) 
-91 		{ 
-92 			while(rs.next()) 
-93 			{ 
-94 				Date wettstart = rs.getDate("wettstart"); 
-95 				Date wettende = rs.getDate("wettende"); 
-96 				String beschreibung = rs.getString("beschreibung"); 
-97 				String zahl = rs.getString("ergebnis"); 
-98 				wettobjekt1 = new ZahlenWettObjekt(wettstart, wettende, beschreibung, zahl); 
-99 				wettobjekt1 = (Wettobjekt_Observeable) wettobjekt1; 
-100 			} 
-101 			rs.close(); 
-102 			stmt.close(); 
-103 		} 
-104 		 
-105 		return wettobjekt1; 
-106 	} 
-
-	 */
-
 }

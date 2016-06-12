@@ -4,11 +4,6 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * 
- * @author Tobias
- * @version 1.0
- */
 public class Account {
 	protected double kontobetrag;
 	protected int kontonummer;
@@ -18,22 +13,29 @@ public class Account {
 	protected String email;
 	protected String passwort;
 	protected String benutzerSeit;
+	protected int benutzerID;
 
-	public Account(int kontobet, String vorn, String nachn, int kontonum, String pw) {
+	public Account(int benutzerID,double kontobet, String benutzernamen,String vorn, String nachn, int kontonum, String pw) {
+		this.benutzerID=benutzerID;
 		kontobetrag = kontobet;
 		vorname = vorn;
 		nachname = nachn;
 		kontonummer = kontonum;
 		passwort = pw;
-		benutzername = vorname + nachname;
+		benutzername = benutzernamen;
 
 		Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
-		benutzerSeit = formatter.format(date);
+		Date dat = new Date();
+		benutzerSeit = dat.getDay()+"."+dat.getMonth()+"."+dat.getYear()+"  "+dat.getHours()+":"+dat.getMinutes()+":"+dat.getYear();
 	}
 
 	public Account() {
 	}
+	
+	public int getBenutzerID(){
+		return this.benutzerID;
+	}
+	
 	public String getVorname() {
 		return vorname;
 	}

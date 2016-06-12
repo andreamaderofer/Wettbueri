@@ -1,16 +1,11 @@
 package Control;
 
 /**
- * 
  * @author Tobias
  * @version 1.0
  */
-
 class LottoWette extends Wette {
-	/**
-	 * @author Tobias
-	 * @version 1.0
-	 */
+
 
 	protected int[] wette;
 	int zaehler = 0;

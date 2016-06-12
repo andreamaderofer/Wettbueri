@@ -4,6 +4,8 @@ package Control;
  * @author andrea
  * @version 1.0
  */
+
+
 import GUI.*;
 
 import java.sql.Time;
@@ -22,6 +24,7 @@ abstract class WettobjektObserveable extends Observable {
 	protected Date start;
 	protected Date end;
 	protected String beschreibung;
+	
 	public int getId() {
 		return id;
 	}
@@ -97,6 +100,9 @@ abstract class WettobjektObserveable extends Observable {
 		TimerTask timer = null;
 		t.schedule(timer, end);
 		t.schedule(timer, start);
+	}
+
+	public WettobjektObserveable() {
 	}
 
 	public void wetten(Wette wette) {
