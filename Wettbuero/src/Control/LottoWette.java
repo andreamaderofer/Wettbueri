@@ -6,14 +6,18 @@ package Control;
  */
 class LottoWette extends Wette {
 
-
 	protected int[] wette;
-	int zaehler = 0;
 
-	public LottoWette(String pars) {
+	public LottoWette(String pars, Account acc, double WettEinsatz) {
 		super();
-		wette[zaehler] = Integer.parseInt(pars);
-		zaehler++;
+		String[] split = pars.split(",");
+		for (int i = 0; i < split.length; i++) {
+			wette[i] = Integer.parseInt(split[i]);
+		}
+	}
+
+	public int[] getWette() {
+		return wette;
 	}
 
 	public LottoWette(int[] w) {

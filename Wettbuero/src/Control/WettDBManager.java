@@ -21,8 +21,9 @@ public class WettDBManager {
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection("jdbc:mysql://localhost/wettbuero", "root", "");
 	}
+
 	public ArrayList<Account> getAccounts() throws Exception {
-		int accZahl=0;
+		int accZahl = 0;
 		Account account = null;
 		ArrayList<Account> accounts = new ArrayList<Account>();
 		String sql = "SELECT * FROM account";
@@ -33,9 +34,9 @@ public class WettDBManager {
 			int accountID = rs.getInt("accountID");
 			String vorname = rs.getString("vorname");
 			String nachname = rs.getString("nachname");
-			String benutzer=rs.getString("benutzername");
+			String benutzer = rs.getString("benutzername");
 			String passwort = rs.getString("passwort");
-			account = new Account(accZahl,kontostand, benutzer,nachname, vorname, accountID, passwort);
+			account = new Account(accZahl, kontostand, benutzer, nachname, vorname, accountID, passwort);
 			accounts.add(account);
 			accZahl++;
 		}
@@ -56,12 +57,13 @@ public class WettDBManager {
 			String vorname = rs.getString("vorname");
 			String nachname = rs.getString("nachname");
 			String passwort = rs.getString("passwort");
-			for(int i=0;i<=getAccounts().size()-1;i++){
-				if(accountID==getAccounts().get(i).getBenutzerID()){
-					return new Wette(getAccounts().get(i),wette.einsatz);
+			for (int i = 0; i <= getAccounts().size() - 1; i++) {
+				if (accountID == getAccounts().get(i).getBenutzerID()) {
+					return new Wette(getAccounts().get(i), wette.einsatz);
 				}
 			}
-			//(int benutzerID,double kontobet, String benutzernamen,String vorn, String nachn, int kontonum, String pw)
+			// (int benutzerID,double kontobet, String benutzernamen,String
+			// vorn, String nachn, int kontonum, String pw)
 		}
 		rs.close();
 		stmt.execute();
@@ -69,11 +71,11 @@ public class WettDBManager {
 	}
 
 	public void setAccount(Account account) throws Exception {
-		
-		String sql = "insert into Account value(?,?, ?, ?, ?, ?, ?, ?,?)";
+
+		String sql = "insert into Account value(?,?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 
-		stmt.setInt(1,account.benutzerID);
+		stmt.setInt(1, account.benutzerID);
 		stmt.setInt(2, account.kontonummer);
 		stmt.setString(3, account.email);
 		stmt.setString(4, account.passwort);

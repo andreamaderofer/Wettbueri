@@ -1,6 +1,6 @@
 package Control;
-
 import java.sql.Date;
+
 /**
  * @author andrea
  *  @version 1.0
@@ -42,7 +42,7 @@ public class ZahlenWettObjekt extends WettobjektObserveable {
 		System.out.println("Zufallszahl erzeugen!");
 		System.out.println("Die Ziehung ist beendet!");
 		System.out.println("Die zu erratende Zahl lautet: " + zufallszahl);
-		Endergebnis erg=new Endergebnis(zufallszahl, zahl,Gewinnausschuetung(this.zahl));
+		Endergebnis erg = new Endergebnis(zufallszahl, zahl, Gewinnausschuetung(this.zahl));
 		return Gewinnausschuetung(this.zahl);
 	}
 
@@ -56,7 +56,7 @@ public class ZahlenWettObjekt extends WettobjektObserveable {
 				int tipp = wetten.get(i).getTipp();
 				if (tipp == zahl) {
 					account.einzahlung(account.getKontobetrag() * 10);
-					return account.getKontobetrag();					
+					return account.getKontobetrag();
 				}
 
 				if (tipp > 95 || tipp < 5 && !(tipp == zahl)) {

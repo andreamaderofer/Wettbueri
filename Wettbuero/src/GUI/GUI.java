@@ -21,6 +21,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * @author Andrea
@@ -28,11 +30,76 @@ import java.awt.SystemColor;
  */
 class GUI extends JFrame implements Observer {
 	public GUI() {
+		GUI gu=new GUI();
+
+		gu.getContentPane().setLayout(null);
+		gu.setIconImage(Toolkit.getDefaultToolkit().getImage("Unbenannt.JPG"));
+		gu.setTitle("Wettb\u00FCro");
+		gu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.desktop);
+		panel.setBounds(0, 0, 545, 348);
+		gu.getContentPane().add(panel);
+		panel.setLayout(null);
+		panel.setForeground(Color.WHITE);
+
+		JLabel lblWetten = new JLabel("WettB\u00FCro");
+		lblWetten.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblWetten.setBounds(182, 42, 190, 34);
+		panel.add(lblWetten);
+
+		zahlenBetrag = new JTextField();
+		zahlenBetrag.setBounds(298, 159, 86, 20);
+		panel.add(zahlenBetrag);
+		zahlenBetrag.setColumns(10);
+
+		JLabel lblZahlen = new JLabel("ZahlenWetten");
+		lblZahlen.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblZahlen.setBounds(216, 102, 104, 24);
+		panel.add(lblZahlen);
+
+		JLabel lblLottoWetten = new JLabel("LottoWetten");
+		lblLottoWetten.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblLottoWetten.setBounds(216, 209, 101, 24);
+		panel.add(lblLottoWetten);
+		
+		JLabel lblZahlenBetrag = new JLabel("Betrag");
+		lblZahlenBetrag.setBounds(320, 132, 46, 14);
+		panel.add(lblZahlenBetrag);
+		
+		zahlenEingabe = new JTextField();
+		zahlenEingabe.setColumns(10);
+		zahlenEingabe.setBounds(157, 159, 86, 20);
+		panel.add(zahlenEingabe);
+		
+		lottoBetrag = new JTextField();
+		lottoBetrag.setColumns(10);
+		lottoBetrag.setBounds(298, 261, 86, 20);
+		panel.add(lottoBetrag);
+		
+		JLabel lbllottoBetrag = new JLabel("Betrag");
+		lbllottoBetrag.setBounds(320, 236, 46, 14);
+		panel.add(lbllottoBetrag);
+		
+		JLabel lblLottowette = new JLabel("Lottowette (6 Zahlen)");
+		lblLottowette.setBounds(146, 236, 114, 14);
+		panel.add(lblLottowette);
+		
+		JLabel lblZahlenwette = new JLabel("Zahlenwette(1 Zahl)");
+		lblZahlenwette.setBounds(146, 137, 109, 14);
+		panel.add(lblZahlenwette);
+		
+		lottoEingabe = new JTextField();
+		lottoEingabe.setBounds(157, 261, 86, 20);
+		panel.add(lottoEingabe);
+		lottoEingabe.setColumns(10);
+		gu.setSize(557, 388);
+		gu.setVisible(true);
 	}
-	private JTextField txtWetteingabe;
-	private static JTextField textField;
-	private static JTextField textField_2;
-	private static JTextField textField_3;
+	private static JTextField zahlenBetrag;
+	private static JTextField zahlenEingabe;
+	private static JTextField lottoBetrag;
+	private static JTextField lottoEingabe;
 
 	public static void main(String[] path) throws ClassNotFoundException, SQLException {
 		StartFenster sf = new StartFenster();
@@ -50,52 +117,58 @@ class GUI extends JFrame implements Observer {
 		panel.setBounds(0, 0, 545, 348);
 		gu.getContentPane().add(panel);
 		panel.setLayout(null);
-
-		JButton btnStart = new JButton("Start");
-		btnStart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				LottoWettObjekt lotto=new LottoWettObjekt();
-			}
-		});
-		btnStart.setBounds(116, 213, 89, 24);
-		panel.add(btnStart);
 		panel.setForeground(Color.WHITE);
 
 		JLabel lblWetten = new JLabel("WettB\u00FCro");
 		lblWetten.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblWetten.setBounds(206, 73, 190, 34);
+		lblWetten.setBounds(182, 42, 190, 34);
 		panel.add(lblWetten);
 
-		textField = new JTextField();
-		textField.setBounds(343, 159, 86, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		zahlenBetrag = new JTextField();
+		zahlenBetrag.setBounds(298, 159, 86, 20);
+		panel.add(zahlenBetrag);
+		zahlenBetrag.setColumns(10);
 
 		JLabel lblZahlen = new JLabel("ZahlenWetten");
-		lblZahlen.setBounds(126, 134, 79, 14);
+		lblZahlen.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblZahlen.setBounds(216, 102, 104, 24);
 		panel.add(lblZahlen);
 
 		JLabel lblLottoWetten = new JLabel("LottoWetten");
-		lblLottoWetten.setBounds(129, 190, 76, 14);
+		lblLottoWetten.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblLottoWetten.setBounds(216, 209, 101, 24);
 		panel.add(lblLottoWetten);
 		
 		JLabel lblBetrag = new JLabel("Betrag");
-		lblBetrag.setBounds(367, 134, 46, 14);
+		lblBetrag.setBounds(320, 132, 46, 14);
 		panel.add(lblBetrag);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(116, 159, 86, 20);
-		panel.add(textField_2);
+		zahlenEingabe = new JTextField();
+		zahlenEingabe.setColumns(10);
+		zahlenEingabe.setBounds(157, 159, 86, 20);
+		panel.add(zahlenEingabe);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(343, 217, 86, 20);
-		panel.add(textField_3);
+		lottoBetrag = new JTextField();
+		lottoBetrag.setColumns(10);
+		lottoBetrag.setBounds(298, 261, 86, 20);
+		panel.add(lottoBetrag);
 		
 		JLabel lottoBetrag = new JLabel("Betrag");
-		lottoBetrag.setBounds(367, 190, 46, 14);
+		lottoBetrag.setBounds(320, 236, 46, 14);
 		panel.add(lottoBetrag);
+		
+		JLabel lblLottowette = new JLabel("Lottowette (6 Zahlen)");
+		lblLottowette.setBounds(146, 236, 114, 14);
+		panel.add(lblLottowette);
+		
+		JLabel lblZahlenwette = new JLabel("Zahlenwette(1 Zahl)");
+		lblZahlenwette.setBounds(146, 137, 109, 14);
+		panel.add(lblZahlenwette);
+		
+		lottoEingabe = new JTextField();
+		lottoEingabe.setBounds(157, 261, 86, 20);
+		panel.add(lottoEingabe);
+		lottoEingabe.setColumns(10);
 		gu.setSize(557, 388);
 		gu.setVisible(true);
 	}

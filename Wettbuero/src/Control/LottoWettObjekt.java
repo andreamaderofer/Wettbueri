@@ -10,8 +10,9 @@ import GUI.Endergebnis;
  */
 public class LottoWettObjekt extends WettobjektObserveable {
 	protected int zahl;
+	protected int[] zufallsZahlen;
 
-	public LottoWettObjekt(Date start, Date end, String beschreibung, String pars) { 
+	public LottoWettObjekt(Date start, Date end, String beschreibung, String pars) {
 		super(start, end, beschreibung, pars);
 		zahl = Integer.parseInt(pars);
 	}
@@ -31,45 +32,45 @@ public class LottoWettObjekt extends WettobjektObserveable {
 	protected void end() {
 		this.ergebnis();
 	}
-	
-	
+
 	public double ergebnis() {
-		int zufallszahl = (int) (Math.random() * 100) + 1;
+		int zufallszahl = 0;
+		for (int i = 0; i < 6; i++) {
+			zufallszahl = (int) (Math.random() * 100) + 1;
+			zufallsZahlen[i] = zufallszahl;
+		}
 		System.out.println("Lasst die Ziehung beginnen!");
 		System.out.println("Zufallszahl erzeugen!");
 		System.out.println("Die Ziehung ist beendet!");
 		System.out.println("Die zu erratende Zahl lautet: " + zufallszahl);
-		Endergebnis erg=new Endergebnis(zufallszahl, zahl,Gewinnausschuetung(this.zahl));
-		return Gewinnausschuetung(this.zahl);
+		Endergebnis erg = new Endergebnis(zufallsZahlen, zahl, Gewinnausschuetung());
+		return Gewinnausschuetung();
 	}
 
-	public double Gewinnausschuetung(int zahl) {
+	public double Gewinnausschuetung() {
 		for (int i = 0; i < wetten.size(); i++) {
 			Account account = wetten.get(i).getAccount();
 
 			if (wetten.get(i) instanceof LottoWette) {
-				LottoWette Lottow = (LottoWette) wetten.get(i);
-
-				int tipp = wetten.get(i).getTipp();
-				if (tipp == zahl) {
+				if (zahlenImTipp((LottoWette) wetten.get(i)) == 6) {
 					account.einzahlung(account.getKontobetrag() * 10);
 					return account.getKontobetrag();
 				}
 
-				if (tipp > 95 || tipp < 5 && !(tipp == zahl)) {
-					account.einzahlung(account.getKontobetrag() * 3);
+				if (zahlenImTipp((LottoWette) wetten.get(i)) >= 4) {
+					account.einzahlung(account.getKontobetrag() * 4.5);
 					return account.getKontobetrag();
 				}
 
-				if (tipp <= zahl + 10 && tipp >= zahl - 10) {
-					account.einzahlung(account.getKontobetrag() * 4);
+				if (zahlenImTipp((LottoWette) wetten.get(i)) == 3) {
+					account.einzahlung(account.getKontobetrag() * 3);
 					return account.getKontobetrag();
 				}
-				if (tipp <= zahl + 20 && tipp >= zahl - 20) {
+				if (zahlenImTipp((LottoWette) wetten.get(i)) == 2) {
 					account.einzahlung(account.getKontobetrag() * 2);
 					return account.getKontobetrag();
 				}
-				if (tipp <= zahl + 30 && tipp >= zahl - 30) {
+				if (zahlenImTipp((LottoWette) wetten.get(i)) == 1) {
 					account.einzahlung(account.getKontobetrag() * 1.5);
 					return account.getKontobetrag();
 				} else {
@@ -79,5 +80,17 @@ public class LottoWettObjekt extends WettobjektObserveable {
 			}
 		}
 		return zahl;
+	}
+
+	public int zahlenImTipp(LottoWette wette) {
+		int passendeZahlen = 0;
+		for (int i = 0; i < 6; i++) {
+			int zahl = wette.getWette()[i];
+			for (int z = 0; z < zufallsZahlen.length; z++) {
+				if (zufallsZahlen[z] == zahl)
+					passendeZahlen++;
+			}
+		}
+		return passendeZahlen;
 	}
 }

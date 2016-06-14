@@ -3,7 +3,12 @@ package Control;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * 
+ * @author Tobias
+ * @version 1.0
+ *
+ */
 public class Account {
 	protected double kontobetrag;
 	protected int kontonummer;
@@ -15,7 +20,8 @@ public class Account {
 	protected String benutzerSeit;
 	protected int benutzerID;
 
-	public Account(int benutzerID,double kontobet, String benutzernamen,String vorn, String nachn, int kontonum, String pw) {
+	public Account(int benutzerID, double kontobet, String benutzernamen, String vorn, String nachn, int kontonum,
+			String pw) {
 		this.benutzerID=benutzerID;
 		kontobetrag = kontobet;
 		vorname = vorn;
