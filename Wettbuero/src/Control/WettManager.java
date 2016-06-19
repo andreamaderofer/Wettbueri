@@ -18,7 +18,7 @@ public class WettManager {
 	}
 
 	public void wetteSetzen(Wette wette) throws SQLException {
-		wettDBManager.setWette(wette);
+		wettDBManager.setWette(wette, 0);
 	}
 
 	public void accountsErstellen(Account account) throws Exception {

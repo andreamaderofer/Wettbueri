@@ -10,7 +10,7 @@ import GUI.Endergebnis;
  */
 public class LottoWettObjekt extends WettobjektObserveable {
 	protected int zahl;
-	protected int[] zufallsZahlen;
+	protected int[] zufallsZahlen=new int[20];
 
 	public LottoWettObjekt(Date start, Date end, String beschreibung, String pars) {
 		super(start, end, beschreibung, pars);
@@ -35,13 +35,13 @@ public class LottoWettObjekt extends WettobjektObserveable {
 
 	public double ergebnis() {
 		int zufallszahl = 0;
+		System.out.println("Lasst die Ziehung beginnen!");
+		System.out.println("Zufallszahl erzeugen!");
+		System.out.println("Die Ziehung ist beendet!");
 		for (int i = 0; i < 6; i++) {
 			zufallszahl = (int) (Math.random() * 100) + 1;
 			zufallsZahlen[i] = zufallszahl;
 		}
-		System.out.println("Lasst die Ziehung beginnen!");
-		System.out.println("Zufallszahl erzeugen!");
-		System.out.println("Die Ziehung ist beendet!");
 		System.out.println("Die zu erratende Zahl lautet: " + zufallszahl);
 		Endergebnis erg = new Endergebnis(zufallsZahlen, zahl, Gewinnausschuetung());
 		return Gewinnausschuetung();

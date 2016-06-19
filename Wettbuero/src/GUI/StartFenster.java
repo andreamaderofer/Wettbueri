@@ -68,6 +68,7 @@ public class StartFenster extends JFrame implements KeyListener {
 				wind.getContentPane().add(pasw);
 				benutzer = new JTextField("Benutzer");
 				passwort1 = new JTextField("Passwort");
+				passwort1.setFont(new Font("Webdings", passwort1.getFont().getStyle(), 11));
 				benutzer.setBounds(80, 30, 200, 20);
 				passwort1.setBounds(80, 60, 200, 20);
 				wind.getContentPane().add(benutzer);
@@ -97,7 +98,7 @@ public class StartFenster extends JFrame implements KeyListener {
 							}
 							wind.dispose();
 							try {
-								for (int i = 0; i <= wettdb.getAccounts().size() - 1; i++) {
+								for (int i = 0; i < wettdb.getAccounts().size() - 1; i++) {
 									if (accAL.get(i).getBenutzername().equals(benutzer.getText())
 											&& accAL.get(i).getPasswort().equals(passwort1.getText())) {
 										GUI.startFrame(i);
@@ -137,15 +138,18 @@ public class StartFenster extends JFrame implements KeyListener {
 				JTextField passwort = new JTextField("Passwort");
 				JTextField betrag = new JTextField("Betrag");
 				JTextField kontonummer = new JTextField("Kontonummer");
+				JTextField email = new JTextField("email");
 
 				benutzernamen.setBounds(120, 30, 80, 20);
 				vorname.setBounds(120, 50, 80, 20);
 				nachname.setBounds(120, 70, 80, 20);
 				passwort.setBounds(120, 90, 80, 20);
 				betrag.setBounds(120, 110, 80, 20);
-				kontonummer.setBounds(120, 130, 80, 20);
-
+				email.setBounds(120, 130, 80, 20);
+				kontonummer.setBounds(120, 150, 80, 20);
+				
 				frame.getContentPane().add(benutzernamen);
+				frame.getContentPane().add(email);
 				frame.getContentPane().add(passwort);
 				frame.getContentPane().add(vorname);
 				frame.getContentPane().add(nachname);
@@ -170,7 +174,7 @@ public class StartFenster extends JFrame implements KeyListener {
 							}
 							Account acc = null;
 							try {
-								acc = new Account(wettdb.getAccounts().size() + 1, Double.parseDouble(betrag.getText()),
+								acc = new Account(wettdb.getAccounts().size() + 1, Double.parseDouble(betrag.getText()),email.getText(),
 										benutzernamen.getText(), vorname.getText(), nachname.getText(),
 										Integer.parseInt(kontonummer.getText()), passwort.getText());
 							} catch (Exception e) {

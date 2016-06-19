@@ -6,12 +6,12 @@ package Control;
  * @version 1.0
  */
 
-class ZahlenWette extends Wette {
+public class ZahlenWette extends Wette {
 	protected int wette;
 	protected String pars;
 
-	public ZahlenWette() {
-
+	public ZahlenWette(String pars, Account acc, double WettEinsatz) {
+		super(acc,WettEinsatz,pars);
 	}
 
 	public ZahlenWette(String parsi) {
@@ -20,5 +20,8 @@ class ZahlenWette extends Wette {
 
 	public ZahlenWette(int wetti) {
 		wette = wetti;
+	}
+
+	public ZahlenWette() {
 	}
 }

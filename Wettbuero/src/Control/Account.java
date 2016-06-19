@@ -3,8 +3,8 @@ package Control;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 /**
- * 
  * @author Tobias
  * @version 1.0
  *
@@ -20,9 +20,10 @@ public class Account {
 	protected String benutzerSeit;
 	protected int benutzerID;
 
-	public Account(int benutzerID, double kontobet, String benutzernamen, String vorn, String nachn, int kontonum,
+	public Account(int benutzerID, double kontobet,String email, String benutzernamen, String vorn, String nachn, int kontonum,
 			String pw) {
 		this.benutzerID=benutzerID;
+		this.email=email;
 		kontobetrag = kontobet;
 		vorname = vorn;
 		nachname = nachn;
@@ -32,7 +33,7 @@ public class Account {
 
 		Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date dat = new Date();
-		benutzerSeit = dat.getDay()+"."+dat.getMonth()+"."+dat.getYear()+"  "+dat.getHours()+":"+dat.getMinutes()+":"+dat.getYear();
+		benutzerSeit = formatter.format(dat);
 	}
 
 	public Account() {
@@ -86,7 +87,7 @@ public class Account {
 		kontobetrag = kontobetrag + d;
 	}
 
-	public void auszahlung(int betrag) {
-		kontobetrag = kontobetrag - betrag;
+	public void auszahlung(double d) {
+		kontobetrag = kontobetrag - d;
 	}
 }

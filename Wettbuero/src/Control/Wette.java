@@ -1,5 +1,7 @@
 package Control;
 
+import java.sql.SQLException;
+
 /**
  * 
  * @author Tobias
@@ -8,18 +10,19 @@ package Control;
 class Wette {
 	protected Account account;
 	protected double einsatz;
-	protected int id = -1;
-	protected int tipp;
-	private int erloese;
-
-	public Wette(Account acc, double einsatz) {
+	protected int id = 0;
+	protected int tipp=0;
+	private int erloese=0;
+	private String beschreibung = null;
+	
+	public Wette(Account acc, double einsatz, String beschreibung) {
 		id++;
 		account = acc;
 		this.einsatz = einsatz;
+		this.beschreibung = beschreibung;
 	}
 
 	public Wette() {
-
 	}
 
 	public int getID() {

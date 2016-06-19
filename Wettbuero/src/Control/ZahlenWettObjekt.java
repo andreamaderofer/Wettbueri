@@ -22,6 +22,9 @@ public class ZahlenWettObjekt extends WettobjektObserveable {
 		this.zahl = zahl;
 	}
 
+	public ZahlenWettObjekt() {
+	}
+
 	protected void start() {
 	}
 
