@@ -7,19 +7,19 @@ import java.sql.SQLException;
  * @author Tobias
  * @version 1.0
  */
-class Wette {
+public class Wette {
 	protected Account account;
 	protected double einsatz;
-	protected int id = 0;
 	protected int tipp=0;
 	private int erloese=0;
+	private int id=0;
 	private String beschreibung = null;
 	
-	public Wette(Account acc, double einsatz, String beschreibung) {
-		id++;
+	public Wette(int wettID, Account acc, double einsatz, String tipp) {
+		id=wettID;
 		account = acc;
 		this.einsatz = einsatz;
-		this.beschreibung = beschreibung;
+		this.beschreibung = tipp;
 	}
 
 	public Wette() {

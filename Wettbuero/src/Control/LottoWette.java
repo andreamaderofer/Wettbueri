@@ -8,8 +8,8 @@ public class LottoWette extends Wette {
 
 	protected int[] wette;
 
-	public LottoWette(String pars, Account acc, double WettEinsatz) {
-		super(acc,WettEinsatz,pars);
+	public LottoWette(int wettID, String pars, Account acc, double WettEinsatz) {
+		super(wettID,acc,WettEinsatz,pars);
 		String[] split = pars.split(",");
 		for (int i = 0; i < split.length; i++) {
 			wette[i] = Integer.parseInt(split[i]);

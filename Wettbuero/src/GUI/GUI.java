@@ -14,7 +14,9 @@ import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -99,8 +101,9 @@ class GUI extends JFrame implements Observer {
 						e.printStackTrace();
 					}
 					try {
-						zahlwett=new ZahlenWette(zahlenEingabe.getText(), man.getAccounts().get(benutzerID), Double.parseDouble(zahlenBetrag.getText()));
+						zahlwett=new ZahlenWette(man.getWette().size()+1,zahlenEingabe.getText(), man.getAccounts().get(benutzerID), Double.parseDouble(zahlenBetrag.getText()));
 						man.setWette(zahlwett,benutzerID);
+						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

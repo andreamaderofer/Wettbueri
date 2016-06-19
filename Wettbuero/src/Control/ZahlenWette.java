@@ -10,8 +10,8 @@ public class ZahlenWette extends Wette {
 	protected int wette;
 	protected String pars;
 
-	public ZahlenWette(String pars, Account acc, double WettEinsatz) {
-		super(acc,WettEinsatz,pars);
+	public ZahlenWette(int wettID,String pars, Account acc, double WettEinsatz) {
+		super(wettID,acc,WettEinsatz,pars);
 	}
 
 	public ZahlenWette(String parsi) {
