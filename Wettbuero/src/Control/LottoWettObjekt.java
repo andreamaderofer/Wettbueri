@@ -29,7 +29,7 @@ public class LottoWettObjekt extends WettobjektObserveable {
 	protected void start() {
 	}
 
-	protected void end() {
+	public void end() {
 		this.ergebnis();
 	}
 

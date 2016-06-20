@@ -87,7 +87,7 @@ public class StartFenster extends JFrame implements KeyListener {
 						} catch (ClassNotFoundException | SQLException e1) {
 							e1.printStackTrace();
 						}
-						if (event.getKeyCode() == KeyEvent.VK_ENTER && !passwort1.getText().equals("passwort")) {
+						if (event.getKeyCode() == KeyEvent.VK_ENTER && !passwort1.getText().equals("Passwort")) {
 							int benutzerID = 0;
 							WettDBManager wett = null;
 							ArrayList<Account> accAL = null;

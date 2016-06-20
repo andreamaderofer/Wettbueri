@@ -16,6 +16,8 @@ public class Start {
 		lott.setStart(dat);
 		zahl.setStart(dat);
 		lott.setEnd(dat);
+		lott.end();
+		zahl.end();
 		zahl.setEnd(dat);		
 		lott.run();
 		zahl.run();

@@ -28,8 +28,8 @@ public class ZahlenWettObjekt extends WettobjektObserveable {
 	protected void start() {
 	}
 
-	protected void end() {
-		ergebnis();
+	public void end() {
+		System.out.println("Das ergebnis ist: "+ergebnis());
 	}
 
 	public void update(Observable o, Object arg) {

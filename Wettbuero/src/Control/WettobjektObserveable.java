@@ -5,7 +5,6 @@ package Control;
  * @version 1.0
  */
 
-
 import GUI.*;
 
 import java.sql.Time;
@@ -24,7 +23,7 @@ abstract class WettobjektObserveable extends Observable {
 	protected Date start;
 	protected Date end;
 	protected String beschreibung;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -77,7 +76,7 @@ abstract class WettobjektObserveable extends Observable {
 		return wette;
 	}
 
-	protected ArrayList<Wette> wetten;
+	protected ArrayList<Wette> wetten = new ArrayList<Wette>();
 	public ArrayList<Observer> observer;
 
 	public WettobjektObserveable(Date start, Date end, String beschreibung, String pars) {

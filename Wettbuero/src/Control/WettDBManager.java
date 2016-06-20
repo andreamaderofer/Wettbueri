@@ -13,8 +13,6 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-
-
 /**
  * @author Kurt
  * @version 1.0
@@ -38,7 +36,7 @@ public class WettDBManager {
 		while (rs.next()) {
 			int kontostand = rs.getInt("kontostand");
 			int accountID = rs.getInt("accountID");
-			String email=rs.getString("email");
+			String email = rs.getString("email");
 			String vorname = rs.getString("vorname");
 			String nachname = rs.getString("nachname");
 			String benutzer = rs.getString("benutzername");
@@ -56,8 +54,8 @@ public class WettDBManager {
 		ArrayList<Wette> wet = new ArrayList<Wette>();
 		String sql = "SELECT * FROM wette";
 		Account acc;
-		int i=0;
-		java.sql.Statement stmt =  conn.createStatement();
+		int i = 0;
+		java.sql.Statement stmt = conn.createStatement();
 		ResultSet rs = ((java.sql.Statement) stmt).executeQuery(sql);
 		while (rs.next()) {
 			int accountID = rs.getInt("accountID");
@@ -65,7 +63,7 @@ public class WettDBManager {
 			String tipp = rs.getString("tipp");
 			Double erloes = rs.getDouble("erloes");
 			int wettID = rs.getInt("WettID");
-			wet.add(new Wette(i,getAccounts().get(accountID),wetteinsatz,tipp));
+			wet.add(new Wette(i, getAccounts().get(accountID), wetteinsatz, tipp));
 			i++;
 		}
 		rs.close();
@@ -94,26 +92,22 @@ public class WettDBManager {
 		String sql = "insert into wette values(?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 
-		System.out.println("WettID: "+wette.getID());
-		System.out.println("benutzerID: "+benutzerID);
-		System.out.println("wettEinsatz"+wette.einsatz);
-		System.out.println("WettTipp: "+wette.getTipp());
-		System.out.println("Erloese: "+wette.getErloese());
-		
+		System.out.println("WettID: " + wette.getID());
+		System.out.println("benutzerID: " + benutzerID);
+		System.out.println("wettEinsatz" + wette.einsatz);
+		System.out.println("WettTipp: " + wette.getTipp());
+		System.out.println("Erloese: " + wette.getErloese());
+
 		stmt.setInt(1, benutzerID);
 		stmt.setDouble(2, wette.einsatz);
-		stmt.setString(3, ""+wette.getTipp());
+		stmt.setString(3, "" + wette.getTipp());
 		stmt.setDouble(4, wette.getErloese());
-		stmt.setInt(5, getWette().size()+1);
+		stmt.setInt(5, getWette().size() + 1);
 		stmt.executeUpdate();
 		stmt.close();
-		
-		int eingabe = JOptionPane.showConfirmDialog(null,
-                "Die Wette wurde Angenommen!",
-                "",
-                JOptionPane.YES_NO_CANCEL_OPTION);
-		System.out.println(eingabe);
 
+		int eingabe = JOptionPane.showConfirmDialog(null, "Die Wette wurde Angenommen!", "", JOptionPane.OK_OPTION);
+		System.out.println(eingabe);
 	}
 
 	public void setWettobjektObserveable(WettobjektObserveable wettObjekt) throws SQLException {
